@@ -6,10 +6,10 @@
         android:label="ImGuiExample"
         android:allowBackup="false"
         android:fullBackupContent="false"
-        android:hasCode="true">
+        android:hasCode="false">
 
         <activity
-            android:name="imgui.example.android.MainActivity"
+            android:name="android.app.NativeActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <meta-data android:name="android.app.lib_name"
