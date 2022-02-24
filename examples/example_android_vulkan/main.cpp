@@ -367,7 +367,10 @@ void init(struct android_app* app)
         }
     }
     SetupVulkan(supportedInstanceExtensions);
-
+    ImGui_ImplVulkan_LoadFunctions([](const char* function_name, void*)
+    {
+        return vkGetInstanceProcAddr(g_Instance, function_name);
+    });
     // Create Window Surface
     VkSurfaceKHR surface;
     VkResult err;
@@ -469,7 +472,11 @@ void tick()
 
     // Start the Dear ImGui frame
     ImGui_ImplVulkan_NewFrame();
-//  ImGui_ImplSDL2_NewFrame();
+    ImGuiIO& io = ImGui::GetIO();
+    int w = ANativeWindow_getWidth(g_App->window);
+    int h = ANativeWindow_getHeight(g_App->window);
+    io.DisplaySize = ImVec2((float)w, (float)h);
+
     ImGui::NewFrame();
 
     // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
